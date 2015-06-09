@@ -56,3 +56,19 @@ b.transition = new Transition(b);
 ```
 
 Changing the singleton properties will propagate through all instances and all future instances. For even more goodies check out the code!
+
+## Custom Build
+Transition.js uses [nodejs](http://nodejs.org/) in order to build source files. You'll first want to install that. Then you can nab all the dependencies with `npm`:
+
+```
+cd transition.js
+npm install
+```
+
+After you've edited the source or styles then you can build running this command from the root of the project:
+
+```
+node ./utils/build
+```
+
+This will create all the files in the `./build/` folder.
