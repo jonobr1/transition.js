@@ -81,6 +81,8 @@
 
         var toggle = function(e) {
 
+          console.log(toggle);
+
           Transition.stagger = 200 * e.clientX / window.innerWidth;
           Transition.duration = 500 * e.clientY / window.innerHeight;
 
@@ -104,6 +106,7 @@
         window.addEventListener('mousedown', toggle, false);
         window.addEventListener('touchstart', function(e) {
           var touch = e.touches[0];
+          console.log('touchstart', touch);
           toggle({
             clientX: touch.pageX,
             clientY: touch.pageY
