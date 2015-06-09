@@ -79,7 +79,7 @@
           }
         };
 
-        window.addEventListener('click', function(e) {
+        var toggle = function(e) {
 
           Transition.stagger = 200 * e.clientX / window.innerWidth;
           Transition.duration = 500 * e.clientY / window.innerHeight;
@@ -93,7 +93,19 @@
               break;
           }
 
-        }, false);
+        };
+
+        var cancel = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+
+        window.addEventListener('mousedown', toggle, false);
+        window.addEventListener('touchstart', toggle, false);
+        window.addEventListener('touchmove', cancel, false);
+        window.addEventListener('touchend', cancel, false);
+        window.addEventListener('touchcancel', cancel, false);
 
         var loop = function() {
           requestAnimationFrame(loop);
