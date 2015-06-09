@@ -1,0 +1,22 @@
+{
+  "name": "transition.js",
+  "version": "v0.1",
+  "description": "A class to create staggered transitions on DOM elements with CSS programmatically through JavaScript.",
+  "main": "./utils/build.js",
+  "dependencies": {
+    "clean-css": "^3.3.1",
+    "node-minify": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "keywords": [
+    "css",
+    "transition",
+    "gpu",
+    "accelerated",
+    "stagger",
+    "animation"
+  ],
+  "author": "jonobr1",
+  "license": "MIT"
+}

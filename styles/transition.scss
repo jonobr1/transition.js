@@ -1,0 +1,29 @@
+@import "bourbon/bourbon";
+
+$distance: 50px;
+
+.transition {
+
+  @include transform-style(preserve-3d);
+  @include transform-origin(center center);
+
+  @include transition-property(transform, opacity);
+  @include transition-timing-function($ease-in-out-circ);
+
+  @include transform(translateY(-$distance));
+  pointer-events: none;
+  opacity: 0;
+
+  &.in {
+    @include transform(translateY(0));
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  &.out {
+    @include transform(translateY($distance));
+    pointer-events: none;
+    opacity: 0;
+  }
+
+}
