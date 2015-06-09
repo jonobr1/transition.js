@@ -102,7 +102,13 @@
         }
 
         window.addEventListener('mousedown', toggle, false);
-        window.addEventListener('touchstart', toggle, false);
+        window.addEventListener('touchstart', function(e) {
+          var touch = e.touches[0];
+          toggle({
+            clientX: touch.pageX,
+            clientY: touch.pageY
+          });
+        }, false);
         window.addEventListener('touchmove', cancel, false);
         window.addEventListener('touchend', cancel, false);
         window.addEventListener('touchcancel', cancel, false);
