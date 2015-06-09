@@ -34,6 +34,7 @@
         var amount = 100;
         var transitions = [];
         var state = Transition.Types.out;
+        var container = document.querySelector('#content');
 
         for (var i = 0; i < amount; i++) {
 
@@ -60,7 +61,7 @@
 
           var transition = new Transition(elem);
           transitions.push(transition);
-          document.querySelector('#content').appendChild(elem);
+          container.appendChild(elem);
 
         }
 
