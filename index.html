@@ -2,25 +2,105 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script src="build/transition.min.js"></script>
+    <title>Transition.js</title>
+    <style>
+      * { margin: 0; padding: 0; }
+      body {
+        font-family: Lucida Grande, helvetica, arial, sans-serif;
+        font-size: 13px;
+        line-height: 20px;
+        text-align: center;
+        color: #333;
+      }
+      #info {
+        padding: 20px;
+      }
+      a { color: #333; }
+      a:hover { text-decoration: none; }
+    </style>
   </head>
-  <body>
-    <div id="box" style="position: absolute; top: 50%; left: 50%; margin-top: -50px; margin-left: -50px; width: 100px; height: 100px; background: rgb(255, 100, 100);"></div>
-    <script>
+  <body style="position: absolute; width: 100%; height: 100%; cursor: pointer; overflow: hidden;">
+    <div id="content"></div>
+    <div id="info" style="position: relative; z-index: 9999; top: 50%; margin-top: -50px;">
+      <p><strong>Transition.js</strong></p>
+      <p>Click anywhere to transition elements in/out.</p>
+      <p><a href="http://jonobr1.github.com/transition.js/build/transition.min.js">Download</a> &middot; <a href="http://github.com/jonobr1/transition.js" target="_blank">Source</a></p>
+    </div>
+    <div class="scripts">
+      <script src="./build/transition.js"></script>
+      <script>
 
-      var elem = document.querySelector('#box');
-      var transition = new Transition(elem);
+        var amount = 100;
+        var transitions = [];
+        var state = Transition.Types.out;
 
-      window.addEventListener('click', function(e) {
-        transition[transition.type === Transition.Types.in ? Transition.Events[Transition.Types.out] : Transition.Events[Transition.Types.in]]();
-      }, false);
+        for (var i = 0; i < amount; i++) {
 
-      var loop = function() {
-        requestAnimationFrame(loop);
-        Transition.update();
-      };
-      loop();
+          var width = height = Math.random() * window.innerWidth / 10 + 50;
 
-    </script>
+          var elem = document.createElement('div');
+          elem.style.position = 'absolute';
+
+          elem.style.top = Math.floor(110 * Math.random() - 5) + '%';
+          elem.style.left = Math.floor(110 * Math.random() - 5) + '%';
+
+          elem.style.marginTop = - height / 2 + 'px';
+          elem.style.marginLeft = - width / 2 + 'px';
+
+          elem.style.width = width + 'px';
+          elem.style.height = height + 'px';
+
+          var c = Math.floor(Math.random() * 255);
+          elem.style.background = 'rgb('
+            + Math.floor(255) + ','
+            + Math.floor(Math.random() * 255) + ','
+            + Math.floor(Math.random() * 255) + ')';
+          elem.style.borderRadius = Math.floor(100 * Math.random()) + '%';
+
+          var transition = new Transition(elem);
+          transitions.push(transition);
+          document.body.appendChild(elem);
+
+        }
+
+        var animateIn = function() {
+          state = Transition.Types.in;
+          for (var i = 0; i < transitions.length; i++) {
+            transitions[i].stop().in();
+          }
+        };
+
+        var animateOut = function() {
+          state = Transition.Types.out;
+          for (var i = 0; i < transitions.length; i++) {
+            transitions[i].stop().out();
+          }
+        };
+
+        window.addEventListener('click', function(e) {
+
+          Transition.stagger = 200 * e.clientX / window.innerWidth;
+          Transition.duration = 500 * e.clientY / window.innerHeight;
+
+          switch (state) {
+            case Transition.Types.in:
+              animateOut();
+              break;
+            case Transition.Types.out:
+              animateIn();
+              break;
+          }
+
+        }, false);
+
+        var loop = function() {
+          requestAnimationFrame(loop);
+          Transition.update();
+        };
+
+        loop();
+
+      </script>
+    </div>
   </body>
 </html>
