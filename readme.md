@@ -39,3 +39,20 @@ Here is boilerplate html in order to transition a DOM element on and off the scr
   </body>
 </html>
 ```
+
+You can change the quality of the animation by editing the `./styles/transition.scss` file. Currently depends on [Bourbon](http://bourbon.io) for cross browser css functionality.
+
+You can also change the stagger rate and the duration of the animation like so:
+
+```javascript
+var a = document.querySelector('#box');
+a.transition = new Transition(a);
+
+Transition.stagger = 50; // in milliseconds
+Transition.duration = 1000; // in milliseconds
+
+var b = document.querySelector('#circle');
+b.transition = new Transition(b);
+```
+
+Changing the singleton properties will propagate through all instances and all future instances. For even more goodies check out the code!
