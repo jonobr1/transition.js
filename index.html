@@ -103,11 +103,14 @@
 
         window.addEventListener('mousedown', toggle, false);
         window.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
           var touch = e.touches[0];
           toggle({
             clientX: touch.pageX,
             clientY: touch.pageY
           });
+          return false;
         }, false);
         window.addEventListener('touchmove', cancel, false);
 
