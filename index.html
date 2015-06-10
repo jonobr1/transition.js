@@ -101,8 +101,8 @@
           return false;
         }
 
-        window.addEventListener('mousedown', toggle, false);
-        window.addEventListener('touchstart', function(e) {
+        container.addEventListener('mousedown', toggle, false);
+        container.addEventListener('touchstart', function(e) {
           e.preventDefault();
           e.stopPropagation();
           var touch = e.touches[0];
@@ -112,7 +112,7 @@
           });
           return false;
         }, false);
-        window.addEventListener('touchmove', cancel, false);
+        container.addEventListener('touchmove', cancel, false);
 
         var loop = function() {
           requestAnimationFrame(loop);
