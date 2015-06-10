@@ -13,6 +13,13 @@
         text-align: center;
         color: #333;
       }
+      body,
+      #content {
+        position: absolute; width: 100%; height: 100%; overflow: hidden;
+      }
+      #content {
+        cursor: pointer;
+      }
       #info {
         padding: 20px;
       }
@@ -20,7 +27,7 @@
       a:hover { text-decoration: none; }
     </style>
   </head>
-  <body style="position: absolute; width: 100%; height: 100%; cursor: pointer; overflow: hidden;">
+  <body>
     <div id="content"></div>
     <div id="info" style="position: relative; z-index: 9999; top: 50%; margin-top: -50px;">
       <p><strong>Transition.js</strong></p>
