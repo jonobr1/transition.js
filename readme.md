@@ -1,6 +1,6 @@
 # Transition.js
 
-A class to create staggered transitions on DOM elements with CSS programmatically through JavaScript.
+A class to create staggered transitions on DOM elements with CSS programmatically through JavaScript. With thanks to [Vrse](http://vrse.com)
 
 ## Usage
 Download the [minified library](https://raw.github.com/jonobr1/transition.js/master/build/transition.min.js) and include it in your html.
